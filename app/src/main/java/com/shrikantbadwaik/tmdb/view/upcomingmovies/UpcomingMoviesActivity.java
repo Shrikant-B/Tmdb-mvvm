@@ -52,7 +52,7 @@ public class UpcomingMoviesActivity extends BaseActivity<UpcomingMoviesActivityB
 
     @Override
     protected int bindingVariable() {
-        return BR.viewmodel;
+        return BR.viewModel;
     }
 
     @Override

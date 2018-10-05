@@ -23,12 +23,12 @@ public class UpcomingMoviesViewModel extends BaseViewModel<UpcomingMoviesView> {
 
     public void getUpcomingMovies() {
         if (getView().isDeviceOnline()) {
-            getView().showLoading();
+            setLoading(true);
             upcomingMovies.execute(new CallbackObserverWrapper<MovieResponse>(getView()) {
                 @Override
                 protected void onSuccess(MovieResponse movieResponse) {
                     if (isViewAttached()) {
-                        getView().hideLoading();
+                        setLoading(false);
                         if (movieResponse != null) {
                             List<Movie> movieList = movieResponse.getResults();
                             if (movieList != null && !movieList.isEmpty()) {
@@ -41,7 +41,7 @@ public class UpcomingMoviesViewModel extends BaseViewModel<UpcomingMoviesView> {
                 @Override
                 protected void onFailure(String error) {
                     if (isViewAttached()) {
-                        getView().hideLoading();
+                        setLoading(false);
                     }
                 }
             });

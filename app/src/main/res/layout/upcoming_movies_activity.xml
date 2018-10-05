@@ -6,8 +6,10 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
-            name="viewmodel"
+            name="viewModel"
             type="com.shrikantbadwaik.tmdb.viewmodel.UpcomingMoviesViewModel" />
     </data>
 
@@ -21,6 +23,19 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
             android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="Upcoming Movies"
+            app:titleTextColor="@android:color/white" />
+
+        <android.support.v4.widget.ContentLoadingProgressBar
+            android:id="@+id/upcoming_movies_activity_progress_bar"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
