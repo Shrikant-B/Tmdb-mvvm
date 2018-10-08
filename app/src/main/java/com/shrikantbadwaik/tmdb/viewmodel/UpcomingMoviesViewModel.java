@@ -1,5 +1,8 @@
 package com.shrikantbadwaik.tmdb.viewmodel;
 
+import android.databinding.ObservableArrayList;
+import android.databinding.ObservableList;
+
 import com.shrikantbadwaik.tmdb.data.model.Movie;
 import com.shrikantbadwaik.tmdb.data.model.MovieResponse;
 import com.shrikantbadwaik.tmdb.data.remote.CallbackObserverWrapper;
@@ -14,6 +17,7 @@ import javax.inject.Inject;
 
 public class UpcomingMoviesViewModel extends BaseViewModel<UpcomingMoviesView> {
     private final UpcomingMovies upcomingMovies;
+    private ObservableList<Movie> movieObservableList = new ObservableArrayList<>();
 
     @Inject
     public UpcomingMoviesViewModel(Repository repository, UpcomingMovies upcomingMovies) {
@@ -32,7 +36,8 @@ public class UpcomingMoviesViewModel extends BaseViewModel<UpcomingMoviesView> {
                         if (movieResponse != null) {
                             List<Movie> movieList = movieResponse.getResults();
                             if (movieList != null && !movieList.isEmpty()) {
-                                getView().showUpcomingMovies(movieList);
+                                movieObservableList.clear();
+                                movieObservableList.addAll(movieList);
                             }
                         }
                     }
@@ -46,5 +51,9 @@ public class UpcomingMoviesViewModel extends BaseViewModel<UpcomingMoviesView> {
                 }
             });
         } else getView().showDeviceOfflineError();
+    }
+
+    public ObservableList<Movie> getMovieObservableList() {
+        return movieObservableList;
     }
 }

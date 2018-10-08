@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.shrikantbadwaik.tmdb.viewmodel.UpcomingMoviesAdapterViewModel" />
+    </data>
+
     <android.support.design.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,6 +31,7 @@
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/layout_upcoming_movie_view_holder_iv_poster"
+                imageUrl="@{viewModel.imageUrl}"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:scaleType="fitXY"
@@ -35,6 +43,9 @@
                 android:id="@+id/layout_upcoming_movie_view_tv_certificate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{viewModel.certificate}"
+                android:textSize="12sp"
+                android:textStyle="italic"
                 app:layout_constraintBottom_toTopOf="@+id/layout_upcoming_movie_view_holder_tv_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.96"
@@ -47,7 +58,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
+                android:text="@{viewModel.title}"
                 android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/layout_upcoming_movie_view_holder_iv_poster"
@@ -58,8 +73,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:text="@{viewModel.releaseDate}"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/layout_upcoming_view_holder_tv_rating"
+                app:layout_constraintEnd_toStartOf="@+id/layout_upcoming_movie_view_holder_tv_rating"
                 app:layout_constraintHorizontal_bias="0.05"
                 app:layout_constraintStart_toEndOf="@+id/layout_upcoming_movie_view_holder_iv_poster"
                 app:layout_constraintTop_toBottomOf="@+id/layout_upcoming_movie_view_holder_tv_name"
@@ -67,10 +84,12 @@
                 tools:text="29-08-2018" />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/layout_upcoming_view_holder_tv_rating"
+                android:id="@+id/layout_upcoming_movie_view_holder_tv_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
+                android:text="@{viewModel.rating}"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"

@@ -11,7 +11,7 @@ import javax.inject.Provider;
 import javax.inject.Singleton;
 
 @Singleton
-public class ViewModelProviderFactory implements ViewModelProvider.Factory {
+public final class ViewModelProviderFactory implements ViewModelProvider.Factory {
     private final Map<Class<? extends ViewModel>, Provider<ViewModel>> creators;
 
     @Inject

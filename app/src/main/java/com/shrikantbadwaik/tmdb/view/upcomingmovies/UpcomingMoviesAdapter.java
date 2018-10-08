@@ -6,17 +6,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.bumptech.glide.Glide;
+import com.shrikantbadwaik.tmdb.BR;
 import com.shrikantbadwaik.tmdb.R;
 import com.shrikantbadwaik.tmdb.data.model.Movie;
 import com.shrikantbadwaik.tmdb.databinding.LayoutUpcomingMoviesViewHolderBinding;
+import com.shrikantbadwaik.tmdb.view.base.BaseViewHolder;
+import com.shrikantbadwaik.tmdb.viewmodel.UpcomingMoviesAdapterViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class UpcomingMoviesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class UpcomingMoviesAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private List<Movie> movieList;
 
     @Inject
@@ -25,13 +27,12 @@ public class UpcomingMoviesAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     public void setMovieList(List<Movie> movieList) {
-        this.movieList.clear();
-        this.movieList = movieList;
+        this.movieList.addAll(movieList);
     }
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         LayoutUpcomingMoviesViewHolderBinding adapterBinding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()),
                 R.layout.layout_upcoming_movies_view_holder, viewGroup,
                 false);
@@ -39,18 +40,9 @@ public class UpcomingMoviesAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-        ViewHolder holder = (ViewHolder) viewHolder;
+    public void onBindViewHolder(@NonNull BaseViewHolder viewHolder, int position) {
         Movie movie = movieList.get(position);
-        if (movie != null) {
-            holder.adapterBinding.layoutUpcomingMovieViewHolderTvName.setText(movie.getTitle());
-            Glide.with(holder.itemView)
-                    .load(movie.getPosterPath())
-                    .into(holder.adapterBinding.layoutUpcomingMovieViewHolderIvPoster);
-            holder.adapterBinding.layoutUpcomingMovieViewTvCertificate.setText(movie.isAdult() ? "A" : "U/A");
-            holder.adapterBinding.layoutUpcomingMovieViewHolderTvReleaseDate.setText(movie.getReleaseDate());
-            holder.adapterBinding.layoutUpcomingViewHolderTvRating.setText(String.format("★%s", movie.getVoteAverage()));
-        }
+        if (movie != null) viewHolder.onBind(movie, position);
     }
 
     @Override
@@ -58,12 +50,23 @@ public class UpcomingMoviesAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         return movieList != null && !movieList.isEmpty() ? movieList.size() : 0;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public void clear() {
+        movieList.clear();
+    }
+
+    public class ViewHolder extends BaseViewHolder<Movie> {
         private LayoutUpcomingMoviesViewHolderBinding adapterBinding;
 
         public ViewHolder(@NonNull LayoutUpcomingMoviesViewHolderBinding adapterBinding) {
             super(adapterBinding.getRoot());
             this.adapterBinding = adapterBinding;
+        }
+
+        @Override
+        public void onBind(Movie movie, int position) {
+            UpcomingMoviesAdapterViewModel viewModel = new UpcomingMoviesAdapterViewModel(movie);
+            adapterBinding.setVariable(BR.viewModel, viewModel);
+            adapterBinding.executePendingBindings();
         }
     }
 }
