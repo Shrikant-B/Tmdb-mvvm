@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 
 import com.shrikantbadwaik.tmdb.data.di.annotation.ViewModelKey;
-import com.shrikantbadwaik.tmdb.domain.ViewModelProviderFactory;
+import com.shrikantbadwaik.tmdb.domain.helper.ViewModelProviderFactory;
 import com.shrikantbadwaik.tmdb.viewmodel.UpcomingMoviesViewModel;
 
 import dagger.Binds;

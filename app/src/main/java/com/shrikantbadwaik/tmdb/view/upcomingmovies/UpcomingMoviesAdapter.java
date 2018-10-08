@@ -32,7 +32,9 @@ public class UpcomingMoviesAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        LayoutUpcomingMoviesViewHolderBinding adapterBinding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.layout_upcoming_movies_view_holder, viewGroup, false);
+        LayoutUpcomingMoviesViewHolderBinding adapterBinding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()),
+                R.layout.layout_upcoming_movies_view_holder, viewGroup,
+                false);
         return new ViewHolder(adapterBinding);
     }
 
@@ -45,6 +47,9 @@ public class UpcomingMoviesAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             Glide.with(holder.itemView)
                     .load(movie.getPosterPath())
                     .into(holder.adapterBinding.layoutUpcomingMovieViewHolderIvPoster);
+            holder.adapterBinding.layoutUpcomingMovieViewTvCertificate.setText(movie.isAdult() ? "A" : "U/A");
+            holder.adapterBinding.layoutUpcomingMovieViewHolderTvReleaseDate.setText(movie.getReleaseDate());
+            holder.adapterBinding.layoutUpcomingViewHolderTvRating.setText(String.format("★%s", movie.getVoteAverage()));
         }
     }
 

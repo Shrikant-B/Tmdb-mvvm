@@ -1,4 +1,4 @@
-package com.shrikantbadwaik.tmdb.domain;
+package com.shrikantbadwaik.tmdb.domain.helper;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
