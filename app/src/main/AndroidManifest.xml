@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.shrikantbadwaik.tmdb.UpcomingMoviesApplication"
+        android:name=".UpcomingMoviesApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,13 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.shrikantbadwaik.tmdb.view.upcomingmovies.UpcomingMoviesActivity">
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="f1c25fa2965716235b3d84e1056a1306d7f47aef" />
+
+        <activity android:name=".view.upcomingmovies.UpcomingMoviesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.moviedetails.MovieDetailsActivity" />
     </application>
 
 </manifest>

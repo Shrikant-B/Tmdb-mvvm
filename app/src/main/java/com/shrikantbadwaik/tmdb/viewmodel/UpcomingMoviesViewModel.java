@@ -4,8 +4,8 @@ import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 
 import com.shrikantbadwaik.tmdb.data.model.Movie;
-import com.shrikantbadwaik.tmdb.data.model.MovieResponse;
 import com.shrikantbadwaik.tmdb.data.remote.CallbackObserverWrapper;
+import com.shrikantbadwaik.tmdb.data.remote.apiresponse.MovieResponse;
 import com.shrikantbadwaik.tmdb.data.repository.Repository;
 import com.shrikantbadwaik.tmdb.domain.usecase.usecaseimpl.UpcomingMovies;
 import com.shrikantbadwaik.tmdb.view.base.BaseViewModel;

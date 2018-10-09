@@ -1,7 +1,8 @@
 package com.shrikantbadwaik.tmdb.data;
 
-import com.shrikantbadwaik.tmdb.data.model.MovieResponse;
 import com.shrikantbadwaik.tmdb.data.remote.UpcomingMoviesApi;
+import com.shrikantbadwaik.tmdb.data.remote.apiresponse.ImageResponse;
+import com.shrikantbadwaik.tmdb.data.remote.apiresponse.MovieResponse;
 import com.shrikantbadwaik.tmdb.data.repository.Repository;
 import com.shrikantbadwaik.tmdb.domain.helper.Constants;
 
@@ -22,5 +23,10 @@ public class DataSource implements Repository {
     @Override
     public Observable<MovieResponse> upcomingMovies() {
         return upcomingMoviesApi.upcomingMovies(Constants.API_KEY);
+    }
+
+    @Override
+    public Observable<ImageResponse> moviePosters(String id) {
+        return upcomingMoviesApi.moviePosters(id, Constants.API_KEY);
     }
 }

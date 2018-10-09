@@ -3,8 +3,10 @@ package com.shrikantbadwaik.tmdb;
 import android.app.Activity;
 import android.app.Application;
 
+import com.crashlytics.android.Crashlytics;
 import com.shrikantbadwaik.tmdb.data.di.ApplicationInjector;
 
+import io.fabric.sdk.android.Fabric;
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjector;
@@ -18,6 +20,7 @@ public class UpcomingMoviesApplication extends Application implements HasActivit
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         ApplicationInjector.inject(this);
     }
 

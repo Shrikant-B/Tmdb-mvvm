@@ -1,6 +1,7 @@
 package com.shrikantbadwaik.tmdb.data.di.module;
 
 import com.shrikantbadwaik.tmdb.data.di.annotation.ActivityScope;
+import com.shrikantbadwaik.tmdb.view.moviedetails.MovieDetailsActivity;
 import com.shrikantbadwaik.tmdb.view.upcomingmovies.UpcomingMoviesActivity;
 
 import dagger.Module;
@@ -11,4 +12,8 @@ public abstract class ActivityModule {
     @ActivityScope
     @ContributesAndroidInjector
     public abstract UpcomingMoviesActivity upcomingMoviesActivity();
+
+    @ActivityScope
+    @ContributesAndroidInjector
+    public abstract MovieDetailsActivity movieDetailsActivity();
 }

@@ -12,13 +12,15 @@ public class UpcomingMoviesAdapterViewModel extends BaseObservable {
     private final ObservableField<String> rating;
     private final ObservableField<String> imageUrl;
     private final Movie movie;
+    private Callback callback;
 
-    public UpcomingMoviesAdapterViewModel(Movie movie) {
+    public UpcomingMoviesAdapterViewModel(Movie movie, Callback callback) {
         this.movie = movie;
+        this.callback = callback;
         title = new ObservableField<>(movie.getTitle());
         certificate = new ObservableField<>(movie.isAdult() ? "A" : "U/A");
         releaseDate = new ObservableField<>(movie.getReleaseDate());
-        rating = new ObservableField<>(String.format("★%s", movie.getVoteAverage()));
+        rating = new ObservableField<>(String.format("★%.1f", (movie.getVoteAverage() / 10) * 5));
         imageUrl = new ObservableField<>(movie.getPosterPath());
     }
 
@@ -40,5 +42,13 @@ public class UpcomingMoviesAdapterViewModel extends BaseObservable {
 
     public ObservableField<String> getImageUrl() {
         return imageUrl;
+    }
+
+    public void onItemClicked() {
+        callback.onItemClicked(movie);
+    }
+
+    public interface Callback {
+        void onItemClicked(Movie movie);
     }
 }

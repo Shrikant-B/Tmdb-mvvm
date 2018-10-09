@@ -20,6 +20,7 @@ import javax.inject.Inject;
 
 public class UpcomingMoviesAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private List<Movie> movieList;
+    private AdapterCallback callback;
 
     @Inject
     public UpcomingMoviesAdapter() {
@@ -28,6 +29,10 @@ public class UpcomingMoviesAdapter extends RecyclerView.Adapter<BaseViewHolder> 
 
     public void setMovieList(List<Movie> movieList) {
         this.movieList.addAll(movieList);
+    }
+
+    public void clear() {
+        movieList.clear();
     }
 
     @NonNull
@@ -50,11 +55,15 @@ public class UpcomingMoviesAdapter extends RecyclerView.Adapter<BaseViewHolder> 
         return movieList != null && !movieList.isEmpty() ? movieList.size() : 0;
     }
 
-    public void clear() {
-        movieList.clear();
+    public void setCallback(AdapterCallback callback) {
+        this.callback = callback;
     }
 
-    public class ViewHolder extends BaseViewHolder<Movie> {
+    public interface AdapterCallback {
+        void showMovieDetails(Movie movie);
+    }
+
+    public class ViewHolder extends BaseViewHolder<Movie> implements UpcomingMoviesAdapterViewModel.Callback {
         private LayoutUpcomingMoviesViewHolderBinding adapterBinding;
 
         public ViewHolder(@NonNull LayoutUpcomingMoviesViewHolderBinding adapterBinding) {
@@ -64,9 +73,14 @@ public class UpcomingMoviesAdapter extends RecyclerView.Adapter<BaseViewHolder> 
 
         @Override
         public void onBind(Movie movie, int position) {
-            UpcomingMoviesAdapterViewModel viewModel = new UpcomingMoviesAdapterViewModel(movie);
+            UpcomingMoviesAdapterViewModel viewModel = new UpcomingMoviesAdapterViewModel(movie, this);
             adapterBinding.setVariable(BR.viewModel, viewModel);
             adapterBinding.executePendingBindings();
+        }
+
+        @Override
+        public void onItemClicked(Movie movie) {
+            if (callback != null) callback.showMovieDetails(movie);
         }
     }
 }

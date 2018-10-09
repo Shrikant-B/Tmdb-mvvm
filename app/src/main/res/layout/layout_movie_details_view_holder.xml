@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.shrikantbadwaik.tmdb.viewmodel.MovieDetailsAdapterViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black">
+
+        <ImageView
+            android:id="@+id/layout_movie_details_view_holder_iv_movie_poster"
+            imageUrl="@{viewModel.imageUrl}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:clickable="false"
+            android:scaleType="fitXY" />
+    </android.support.constraint.ConstraintLayout>
+</layout>
