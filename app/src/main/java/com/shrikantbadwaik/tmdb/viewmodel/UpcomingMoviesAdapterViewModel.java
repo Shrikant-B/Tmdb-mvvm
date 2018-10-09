@@ -5,6 +5,9 @@ import android.databinding.ObservableField;
 
 import com.shrikantbadwaik.tmdb.data.model.Movie;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+
 public class UpcomingMoviesAdapterViewModel extends BaseObservable {
     private final ObservableField<String> title;
     private final ObservableField<String> certificate;
@@ -20,7 +23,11 @@ public class UpcomingMoviesAdapterViewModel extends BaseObservable {
         title = new ObservableField<>(movie.getTitle());
         certificate = new ObservableField<>(movie.isAdult() ? "A" : "U/A");
         releaseDate = new ObservableField<>(movie.getReleaseDate());
-        rating = new ObservableField<>(String.format("★%.1f", (movie.getVoteAverage() / 10) * 5));
+        DecimalFormat decimalFormat = new DecimalFormat("★#.#");
+        DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
+        decimalFormatSymbols.setDecimalSeparator('.');
+        decimalFormat.setDecimalFormatSymbols(decimalFormatSymbols);
+        rating = new ObservableField<>(decimalFormat.format((movie.getVoteAverage() / 10) * 5));
         imageUrl = new ObservableField<>(movie.getPosterPath());
     }
 

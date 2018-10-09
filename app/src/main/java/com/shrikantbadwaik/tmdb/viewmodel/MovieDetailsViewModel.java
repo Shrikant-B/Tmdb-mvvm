@@ -17,6 +17,7 @@ import com.shrikantbadwaik.tmdb.view.base.BaseViewModel;
 import com.shrikantbadwaik.tmdb.view.moviedetails.MovieDetailsView;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -41,7 +42,11 @@ public class MovieDetailsViewModel extends BaseViewModel<MovieDetailsView> {
                 getMoviePosters(movie);
                 title.set(movie.getTitle());
                 overview.set(movie.getOverview());
-                rating.set(Float.valueOf(new DecimalFormat(".#").format((movie.getVoteAverage() / 10) * 5)));
+                DecimalFormat decimalFormat = new DecimalFormat("#.#");
+                DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
+                decimalFormatSymbols.setDecimalSeparator('.');
+                decimalFormat.setDecimalFormatSymbols(decimalFormatSymbols);
+                rating.set(Float.valueOf(decimalFormat.format((movie.getVoteAverage() / 10) * 5)));
             }
         }
     }

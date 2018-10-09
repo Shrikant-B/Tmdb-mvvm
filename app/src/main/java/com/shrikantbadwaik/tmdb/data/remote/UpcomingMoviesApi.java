@@ -12,7 +12,8 @@ import retrofit2.http.Query;
 public interface UpcomingMoviesApi {
     @GET("movie/upcoming")
     Observable<MovieResponse> upcomingMovies(
-            @Query("api_key") String apiKey
+            @Query("api_key") String apiKey,
+            @Query("language") String language
     );
 
     @GET("movie/{movie_id}")

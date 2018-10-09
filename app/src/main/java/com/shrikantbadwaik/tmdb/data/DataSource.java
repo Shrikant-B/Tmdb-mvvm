@@ -6,6 +6,8 @@ import com.shrikantbadwaik.tmdb.data.remote.apiresponse.MovieResponse;
 import com.shrikantbadwaik.tmdb.data.repository.Repository;
 import com.shrikantbadwaik.tmdb.domain.helper.Constants;
 
+import java.util.Locale;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -22,7 +24,7 @@ public class DataSource implements Repository {
 
     @Override
     public Observable<MovieResponse> upcomingMovies() {
-        return upcomingMoviesApi.upcomingMovies(Constants.API_KEY);
+        return upcomingMoviesApi.upcomingMovies(Constants.API_KEY, Locale.getDefault().getLanguage());
     }
 
     @Override
