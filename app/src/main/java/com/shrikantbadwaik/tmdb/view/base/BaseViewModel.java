@@ -2,6 +2,7 @@ package com.shrikantbadwaik.tmdb.view.base;
 
 import android.arch.lifecycle.ViewModel;
 import android.content.Intent;
+import android.databinding.ObservableField;
 
 import com.shrikantbadwaik.tmdb.data.repository.Repository;
 
@@ -10,6 +11,7 @@ import java.lang.ref.WeakReference;
 public abstract class BaseViewModel<V extends BaseView> extends ViewModel {
     private final Repository repository;
     private WeakReference<V> view;
+    private ObservableField<Boolean> isLoading = new ObservableField<>();
 
     public BaseViewModel(Repository repository) {
         this.repository = repository;
@@ -34,6 +36,14 @@ public abstract class BaseViewModel<V extends BaseView> extends ViewModel {
 
     public Repository repository() {
         return repository;
+    }
+
+    public ObservableField<Boolean> isLoading() {
+        return isLoading;
+    }
+
+    public void setLoading(boolean loading) {
+        isLoading.set(loading);
     }
 
     public void onActivityStarted() {

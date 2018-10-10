@@ -1,10 +1,11 @@
-package com.shrikantbadwaik.tmdb.data.model;
+package com.shrikantbadwaik.tmdb.data.remote.apiresonse;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.shrikantbadwaik.tmdb.data.model.Movie;
 
 import java.util.List;
 import java.util.Objects;

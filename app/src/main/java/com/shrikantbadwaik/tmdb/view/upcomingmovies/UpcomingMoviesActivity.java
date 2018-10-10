@@ -1,7 +1,9 @@
 package com.shrikantbadwaik.tmdb.view.upcomingmovies;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,12 +20,10 @@ import java.util.List;
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
-import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
-import dagger.android.support.HasSupportFragmentInjector;
 
 public class UpcomingMoviesActivity extends BaseActivity<UpcomingMoviesActivityBinding, UpcomingMoviesViewModel>
-        implements UpcomingMoviesView, HasSupportFragmentInjector {
+        implements UpcomingMoviesView {
     @Inject
     ViewModelProvider.Factory viewModelFactory;
     @Inject
@@ -52,7 +52,7 @@ public class UpcomingMoviesActivity extends BaseActivity<UpcomingMoviesActivityB
 
     @Override
     protected int bindingVariable() {
-        return BR.viewmodel;
+        return BR.viewModel;
     }
 
     @Override
@@ -62,6 +62,7 @@ public class UpcomingMoviesActivity extends BaseActivity<UpcomingMoviesActivityB
 
         setupRecyclerView();
         viewModel.getUpcomingMovies();
+        subscribeToLiveData();
     }
 
     private void setupRecyclerView() {
@@ -70,14 +71,12 @@ public class UpcomingMoviesActivity extends BaseActivity<UpcomingMoviesActivityB
         activityBinding.upcomingMoviesActivityRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
     }
 
-    @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
-        return androidInjector;
-    }
-
-    @Override
-    public void showUpcomingMovies(List<Movie> movieList) {
-        adapter.setMovieList(movieList);
-        adapter.notifyDataSetChanged();
+    private void subscribeToLiveData() {
+        viewModel.getMovieListLiveData().observe(this, new Observer<List<Movie>>() {
+            @Override
+            public void onChanged(@Nullable List<Movie> movieList) {
+                viewModel.addMovieListToObservable(movieList);
+            }
+        });
     }
 }

@@ -1,9 +1,9 @@
 package com.shrikantbadwaik.tmdb.data.repository;
 
-import com.shrikantbadwaik.tmdb.data.model.MovieResponse;
+import com.shrikantbadwaik.tmdb.data.remote.apiresonse.MovieResponse;
 
-import io.reactivex.Observable;
+import retrofit2.Call;
 
 public interface Repository {
-    Observable<MovieResponse> upcomingMovies();
+    Call<MovieResponse> upcomingMovies();
 }

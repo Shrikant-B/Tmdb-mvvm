@@ -1,25 +1,23 @@
 package com.shrikantbadwaik.tmdb.domain.usecase.usecaseimpl;
 
-import com.shrikantbadwaik.tmdb.data.model.MovieResponse;
+import com.shrikantbadwaik.tmdb.data.remote.apiresonse.MovieResponse;
 import com.shrikantbadwaik.tmdb.data.repository.Repository;
-import com.shrikantbadwaik.tmdb.domain.helper.rx.SchedulerProvider;
 import com.shrikantbadwaik.tmdb.domain.usecase.ApiUseCase01;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observable;
+import retrofit2.Call;
 
 public class UpcomingMovies extends ApiUseCase01<MovieResponse> {
     private final Repository repository;
 
     @Inject
-    public UpcomingMovies(SchedulerProvider schedulerProvider, Repository repository) {
-        super(schedulerProvider);
+    public UpcomingMovies(Repository repository) {
         this.repository = repository;
     }
 
     @Override
-    protected Observable<MovieResponse> buildObservableUseCase() {
+    protected Call<MovieResponse> buildObservableUseCase() {
         return repository.upcomingMovies();
     }
 }

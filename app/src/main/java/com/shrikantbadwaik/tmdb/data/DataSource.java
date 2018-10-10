@@ -1,18 +1,18 @@
 package com.shrikantbadwaik.tmdb.data;
 
-import com.shrikantbadwaik.tmdb.data.model.MovieResponse;
 import com.shrikantbadwaik.tmdb.data.remote.UpcomingMoviesApi;
+import com.shrikantbadwaik.tmdb.data.remote.apiresonse.MovieResponse;
 import com.shrikantbadwaik.tmdb.data.repository.Repository;
 import com.shrikantbadwaik.tmdb.domain.helper.Constants;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import io.reactivex.Observable;
+import retrofit2.Call;
 
 @Singleton
 public class DataSource implements Repository {
-    private UpcomingMoviesApi upcomingMoviesApi;
+    private final UpcomingMoviesApi upcomingMoviesApi;
 
     @Inject
     public DataSource(UpcomingMoviesApi upcomingMoviesApi) {
@@ -20,7 +20,7 @@ public class DataSource implements Repository {
     }
 
     @Override
-    public Observable<MovieResponse> upcomingMovies() {
+    public Call<MovieResponse> upcomingMovies() {
         return upcomingMoviesApi.upcomingMovies(Constants.API_KEY);
     }
 }

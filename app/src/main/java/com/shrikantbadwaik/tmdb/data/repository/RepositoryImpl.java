@@ -1,16 +1,16 @@
 package com.shrikantbadwaik.tmdb.data.repository;
 
 import com.shrikantbadwaik.tmdb.data.DataSource;
-import com.shrikantbadwaik.tmdb.data.model.MovieResponse;
+import com.shrikantbadwaik.tmdb.data.remote.apiresonse.MovieResponse;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import io.reactivex.Observable;
+import retrofit2.Call;
 
 @Singleton
 public class RepositoryImpl implements Repository {
-    private DataSource dataSource;
+    private final DataSource dataSource;
 
     @Inject
     public RepositoryImpl(DataSource dataSource) {
@@ -18,7 +18,7 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public Observable<MovieResponse> upcomingMovies() {
+    public Call<MovieResponse> upcomingMovies() {
         return dataSource.upcomingMovies();
     }
 }
