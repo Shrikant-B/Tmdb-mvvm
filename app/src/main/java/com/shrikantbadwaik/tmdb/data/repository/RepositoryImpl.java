@@ -1,7 +1,7 @@
 package com.shrikantbadwaik.tmdb.data.repository;
 
 import com.shrikantbadwaik.tmdb.data.DataSource;
-import com.shrikantbadwaik.tmdb.data.remote.apiresonse.MovieResponse;
+import com.shrikantbadwaik.tmdb.data.remote.apiresponse.MovieResponse;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

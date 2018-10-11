@@ -1,7 +1,7 @@
 package com.shrikantbadwaik.tmdb.data;
 
 import com.shrikantbadwaik.tmdb.data.remote.UpcomingMoviesApi;
-import com.shrikantbadwaik.tmdb.data.remote.apiresonse.MovieResponse;
+import com.shrikantbadwaik.tmdb.data.remote.apiresponse.MovieResponse;
 import com.shrikantbadwaik.tmdb.data.repository.Repository;
 import com.shrikantbadwaik.tmdb.domain.helper.Constants;
 

@@ -1,4 +1,4 @@
-package com.shrikantbadwaik.tmdb.data.remote.apiresonse;
+package com.shrikantbadwaik.tmdb.data.remote.apiresponse;
 
 import android.os.Parcel;
 import android.os.Parcelable;

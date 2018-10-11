@@ -1,6 +1,6 @@
 package com.shrikantbadwaik.tmdb.data.remote;
 
-import com.shrikantbadwaik.tmdb.data.remote.apiresonse.MovieResponse;
+import com.shrikantbadwaik.tmdb.data.remote.apiresponse.MovieResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

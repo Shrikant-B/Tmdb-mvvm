@@ -1,6 +1,6 @@
 package com.shrikantbadwaik.tmdb.domain.usecase.usecaseimpl;
 
-import com.shrikantbadwaik.tmdb.data.remote.apiresonse.MovieResponse;
+import com.shrikantbadwaik.tmdb.data.remote.apiresponse.MovieResponse;
 import com.shrikantbadwaik.tmdb.data.repository.Repository;
 import com.shrikantbadwaik.tmdb.domain.usecase.ApiUseCase01;
 
