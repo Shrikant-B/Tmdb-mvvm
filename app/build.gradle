@@ -4,7 +4,7 @@ apply plugin: 'io.fabric'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.shrikantbadwaik.tmdb.mvvm"
+        applicationId "com.shrikantbadwaik.tmdb.mvvm.rxjava"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
