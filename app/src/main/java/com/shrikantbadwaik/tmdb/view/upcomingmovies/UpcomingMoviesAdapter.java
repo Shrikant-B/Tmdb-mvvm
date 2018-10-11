@@ -1,5 +1,6 @@
 package com.shrikantbadwaik.tmdb.view.upcomingmovies;
 
+import android.content.res.Configuration;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -21,9 +22,11 @@ import javax.inject.Inject;
 public class UpcomingMoviesAdapter extends RecyclerView.Adapter<BaseRecyclerViewHolder<Movie>> {
     private List<Movie> movieList;
     private AdapterCallback callback;
+    private boolean orientation;
 
     @Inject
-    public UpcomingMoviesAdapter() {
+    public UpcomingMoviesAdapter(int orientation) {
+        this.orientation = (orientation == Configuration.ORIENTATION_PORTRAIT);
         movieList = new ArrayList<>();
     }
 
@@ -38,9 +41,15 @@ public class UpcomingMoviesAdapter extends RecyclerView.Adapter<BaseRecyclerView
     @NonNull
     @Override
     public BaseRecyclerViewHolder<Movie> onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        LayoutUpcomingMoviesViewHolderBinding adapterBinding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()),
-                R.layout.layout_upcoming_movies_view_holder, viewGroup, false);
-        return new ViewHolder(adapterBinding);
+        if (orientation) {
+            LayoutUpcomingMoviesViewHolderBinding adapterBinding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()),
+                    R.layout.layout_upcoming_movies_view_holder, viewGroup, false);
+            return new PortraitViewHolder(adapterBinding);
+        } else {
+            LayoutUpcomingMoviesViewHolderBinding adapterBinding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()),
+                    R.layout.layout_upcoming_movies_view_holder, viewGroup, false);
+            return new LandscapeViewHolder(adapterBinding);
+        }
     }
 
     @Override
@@ -80,6 +89,18 @@ public class UpcomingMoviesAdapter extends RecyclerView.Adapter<BaseRecyclerView
         @Override
         public void onItemClicked(Movie movie) {
             if (callback != null) callback.showMovieDetails(movie);
+        }
+    }
+
+    public class PortraitViewHolder extends ViewHolder {
+        public PortraitViewHolder(@NonNull LayoutUpcomingMoviesViewHolderBinding adapterBinding) {
+            super(adapterBinding);
+        }
+    }
+
+    public class LandscapeViewHolder extends ViewHolder {
+        public LandscapeViewHolder(@NonNull LayoutUpcomingMoviesViewHolderBinding adapterBinding) {
+            super(adapterBinding);
         }
     }
 }

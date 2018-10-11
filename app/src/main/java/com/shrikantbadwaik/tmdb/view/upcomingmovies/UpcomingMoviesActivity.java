@@ -4,9 +4,10 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.shrikantbadwaik.tmdb.BR;
@@ -70,8 +71,9 @@ public class UpcomingMoviesActivity extends BaseActivity<UpcomingMoviesActivityB
 
     private void setupRecyclerView() {
         activityBinding.upcomingMoviesActivityRecyclerView.setAdapter(adapter);
-        activityBinding.upcomingMoviesActivityRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        activityBinding.upcomingMoviesActivityRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
+        activityBinding.upcomingMoviesActivityRecyclerView.setLayoutManager(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT ?
+                new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false) : new GridLayoutManager(this, 3)
+        );
         adapter.setCallback(new UpcomingMoviesAdapter.AdapterCallback() {
             @Override
             public void showMovieDetails(Movie movie) {

@@ -38,7 +38,7 @@ public abstract class BaseViewModel<V extends BaseView> extends ViewModel {
         return repository;
     }
 
-    public ObservableField<Boolean> isLoading() {
+    public ObservableField<Boolean> getIsLoading() {
         return isLoading;
     }
 
