@@ -1,7 +1,7 @@
 # TMDb-mvvm
 The Movie Database implementation using Model-View-ViewModel architecture with dagger2 &amp; rxjava
 
-## The Model-View-ViewModel Pattern
+### The Model-View-ViewModel Pattern
 MVVM is one of the architectural patterns which enhances separation of concerns, it allows separating the user interface logic from the business (or the back-end) logic. Its target (with other MVC patterns goal) is to achieve the following principle “Keeping UI code simple and free of app logic in order to make it easier to manage”.
 
 The main players in the MVVM pattern are:
@@ -21,7 +21,7 @@ The following diagram shows MVVM components and basic interactions.
 | [mvvm-rxjava](https://github.com/Shrikant-B/Tmdb-mvvm/tree/mvvm-rxjava) | Demonstrates a basic [Model‑View‑ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) architecture with Data Binding library. This sample uses [RxJava 2](https://github.com/ReactiveX/RxJava) to implement concurrency, and abstract the data layer. |
 | [mvvm-livedata](https://github.com/Shrikant-B/Tmdb-mvvm/tree/mvvm-livedata) | Demonstrates a basic [Model‑View‑ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) architecture with Data Binding library. This sample uses [Live data](https://developer.android.com/topic/libraries/architecture/livedata). |
 
-## References
+### References
 [MVVM architecture, ViewModel and LiveData](https://proandroiddev.com/mvvm-architecture-viewmodel-and-livedata-part-1-604f50cda1)
 
 [Android Architecture Patterns: Model-View-ViewModel](https://medium.com/upday-devs/android-architecture-patterns-part-3-model-view-viewmodel-e7eeee76b73b)
