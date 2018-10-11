@@ -3,6 +3,7 @@ package com.shrikantbadwaik.tmdb.view.upcomingmovies;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -12,7 +13,9 @@ import com.shrikantbadwaik.tmdb.BR;
 import com.shrikantbadwaik.tmdb.R;
 import com.shrikantbadwaik.tmdb.data.model.Movie;
 import com.shrikantbadwaik.tmdb.databinding.UpcomingMoviesActivityBinding;
+import com.shrikantbadwaik.tmdb.domain.helper.Constants;
 import com.shrikantbadwaik.tmdb.view.base.BaseActivity;
+import com.shrikantbadwaik.tmdb.view.moviedetails.MovieDetailsActivity;
 import com.shrikantbadwaik.tmdb.viewmodel.UpcomingMoviesViewModel;
 
 import java.util.List;
@@ -69,6 +72,14 @@ public class UpcomingMoviesActivity extends BaseActivity<UpcomingMoviesActivityB
         activityBinding.upcomingMoviesActivityRecyclerView.setAdapter(adapter);
         activityBinding.upcomingMoviesActivityRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         activityBinding.upcomingMoviesActivityRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
+        adapter.setCallback(new UpcomingMoviesAdapter.AdapterCallback() {
+            @Override
+            public void showMovieDetails(Movie movie) {
+                Intent intent = new Intent(UpcomingMoviesActivity.this, MovieDetailsActivity.class);
+                intent.putExtra(Constants.INTENT_EXTRAS_MOVIE, movie);
+                startActivity(intent);
+            }
+        });
     }
 
     private void subscribeToLiveData() {

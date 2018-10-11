@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProvider;
 
 import com.shrikantbadwaik.tmdb.data.di.annotation.ViewModelKey;
 import com.shrikantbadwaik.tmdb.domain.helper.ViewModelProviderFactory;
+import com.shrikantbadwaik.tmdb.viewmodel.MovieDetailsViewModel;
 import com.shrikantbadwaik.tmdb.viewmodel.UpcomingMoviesViewModel;
 
 import dagger.Binds;
@@ -18,6 +19,11 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(UpcomingMoviesViewModel.class)
     abstract ViewModel upcomingMoviesViewModel(UpcomingMoviesViewModel upcomingMoviesViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MovieDetailsViewModel.class)
+    abstract ViewModel movieDetailsViewModel(MovieDetailsViewModel movieDetailsViewModel);
 
     @Binds
     abstract ViewModelProvider.Factory viewModelProviderFactory(ViewModelProviderFactory viewModelProviderFactory);

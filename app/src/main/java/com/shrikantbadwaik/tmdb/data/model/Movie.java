@@ -4,10 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.shrikantbadwaik.tmdb.domain.helper.Constants;
 
 public class Movie implements Parcelable {
-    public static final String TMDB_IMAGE_PATH = "http://image.tmdb.org/t/p/w500";
-
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
         @Override
         public Movie createFromParcel(Parcel in) {
@@ -69,7 +68,7 @@ public class Movie implements Parcelable {
     }
 
     public String getPosterPath() {
-        return TMDB_IMAGE_PATH + posterPath;
+        return Constants.TMDB_IMAGE_PATH + posterPath;
     }
 
     public boolean isAdult() {

@@ -1,6 +1,7 @@
 package com.shrikantbadwaik.tmdb.data.repository;
 
 import com.shrikantbadwaik.tmdb.data.DataSource;
+import com.shrikantbadwaik.tmdb.data.remote.apiresponse.ImageResponse;
 import com.shrikantbadwaik.tmdb.data.remote.apiresponse.MovieResponse;
 
 import javax.inject.Inject;
@@ -20,5 +21,10 @@ public class RepositoryImpl implements Repository {
     @Override
     public Call<MovieResponse> upcomingMovies() {
         return dataSource.upcomingMovies();
+    }
+
+    @Override
+    public Call<ImageResponse> moviePoster(String movieId) {
+        return dataSource.moviePoster(movieId);
     }
 }

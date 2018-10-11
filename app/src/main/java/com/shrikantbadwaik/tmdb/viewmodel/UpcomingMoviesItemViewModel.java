@@ -14,10 +14,12 @@ public class UpcomingMoviesItemViewModel extends BaseObservable {
     private final ObservableField<String> certificate;
     private final ObservableField<String> releaseDate;
     private final ObservableField<String> rating;
+    private final Callback callback;
     private Movie movie;
 
-    public UpcomingMoviesItemViewModel(Movie movie) {
+    public UpcomingMoviesItemViewModel(Movie movie, Callback callback) {
         this.movie = movie;
+        this.callback = callback;
         title = new ObservableField<>(movie.getTitle());
         imageUrl = new ObservableField<>(movie.getPosterPath());
         certificate = new ObservableField<>(movie.isAdult() ? "A" : "U/A");
@@ -47,5 +49,13 @@ public class UpcomingMoviesItemViewModel extends BaseObservable {
 
     public ObservableField<String> getRating() {
         return rating;
+    }
+
+    public void onItemClicked() {
+        callback.onItemClicked(movie);
+    }
+
+    public interface Callback {
+        void onItemClicked(Movie movie);
     }
 }
