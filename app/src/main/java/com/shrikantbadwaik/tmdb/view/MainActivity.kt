@@ -1,7 +1,8 @@
-package com.shrikantbadwaik.tmdb
+package com.shrikantbadwaik.tmdb.view
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import com.shrikantbadwaik.tmdb.R
 
 class MainActivity : AppCompatActivity() {
 
