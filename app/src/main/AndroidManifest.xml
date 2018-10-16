@@ -16,7 +16,7 @@
                 android:name="io.fabric.ApiKey"
                 android:value="f1c25fa2965716235b3d84e1056a1306d7f47aef"/>
 
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.movies.MoviesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

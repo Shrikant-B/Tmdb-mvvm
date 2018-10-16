@@ -3,6 +3,7 @@ package com.shrikantbadwaik.tmdb.data.di.module
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.shrikantbadwaik.tmdb.data.remote.TMDbApi
+import com.shrikantbadwaik.tmdb.domain.Constants
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -19,7 +20,8 @@ class NetworkModule {
     @Singleton
     fun httpLoggingInterceptor(): HttpLoggingInterceptor {
         val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
+        interceptor.level =
+                if (Constants.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
         return interceptor
     }
 
@@ -59,7 +61,7 @@ class NetworkModule {
         jacksonConverterFactory: JacksonConverterFactory
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl(Constants.URL)
             .client(okHttpClient)
             .addCallAdapterFactory(rxJavaCallAdapterFactory)
             .addConverterFactory(jacksonConverterFactory)

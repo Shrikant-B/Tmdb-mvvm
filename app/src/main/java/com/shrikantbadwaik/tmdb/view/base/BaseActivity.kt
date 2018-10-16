@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity
 
 
 abstract class BaseActivity<VDB : ViewDataBinding, BVM : BaseViewModel<*>> : AppCompatActivity(), BaseView {
-    private var viewDataBinding: VDB? = null
+    private lateinit var viewDataBinding: VDB
     private var baseViewModel: BVM? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +40,7 @@ abstract class BaseActivity<VDB : ViewDataBinding, BVM : BaseViewModel<*>> : App
 
     override fun onDestroy() {
         super.onDestroy()
+        viewDataBinding.unbind()
         baseViewModel?.onActivityDestroyed()
     }
 
@@ -70,9 +71,13 @@ abstract class BaseActivity<VDB : ViewDataBinding, BVM : BaseViewModel<*>> : App
 
     private fun initViewDataBinding() {
         viewDataBinding = DataBindingUtil.setContentView(this, layoutResource)
-        baseViewModel = if (baseViewModel == null) viewModel else baseViewModel
+        baseViewModel = baseViewModel?.let { baseViewModel } ?: viewModel
         (viewDataBinding as? ViewDataBinding)?.setVariable(variableId, baseViewModel)
         (viewDataBinding as? ViewDataBinding)?.executePendingBindings()
+    }
+
+    fun viewDataBinding(): VDB {
+        return viewDataBinding
     }
 
     protected abstract fun injectDependency()
