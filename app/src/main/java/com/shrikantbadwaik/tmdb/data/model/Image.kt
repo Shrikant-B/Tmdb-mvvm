@@ -3,6 +3,7 @@ package com.shrikantbadwaik.tmdb.data.model
 import android.os.Parcel
 import android.os.Parcelable
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.shrikantbadwaik.tmdb.domain.Constants
 
 data class Image(
     @JsonProperty("aspect_ratio")
@@ -49,4 +50,6 @@ data class Image(
             return arrayOfNulls(size)
         }
     }
+
+    fun filePath() = Constants.TMDB_IMAGE_PATH + filePath
 }

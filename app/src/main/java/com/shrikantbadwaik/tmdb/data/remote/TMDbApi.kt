@@ -16,7 +16,7 @@ interface TMDbApi {
 
     @GET("movie/{movie_id}/images")
     fun moviePosters(
-        @Query("api_key") apiKey: String,
-        @Path("movie_id") movieId: String
+        @Path("movie_id") movieId: String,
+        @Query("api_key") apiKey: String
     ): Observable<ImageResponse>
 }

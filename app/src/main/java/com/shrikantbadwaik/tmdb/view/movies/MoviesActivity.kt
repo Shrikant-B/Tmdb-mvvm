@@ -1,22 +1,26 @@
 package com.shrikantbadwaik.tmdb.view.movies
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.content.res.Configuration
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import com.shrikantbadwaik.tmdb.BR
 import com.shrikantbadwaik.tmdb.R
+import com.shrikantbadwaik.tmdb.data.model.Movie
 import com.shrikantbadwaik.tmdb.databinding.ActivityMoviesBinding
-import com.shrikantbadwaik.tmdb.domain.helper.ViewModelProviderFactory
+import com.shrikantbadwaik.tmdb.domain.Constants
 import com.shrikantbadwaik.tmdb.view.base.BaseActivity
+import com.shrikantbadwaik.tmdb.view.moviedetails.MovieDetailsActivity
 import com.shrikantbadwaik.tmdb.viewmodel.MoviesActivityViewModel
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
 class MoviesActivity : BaseActivity<ActivityMoviesBinding, MoviesActivityViewModel>(), MoviesView {
     @Inject
-    lateinit var factory: ViewModelProviderFactory
+    lateinit var factory: ViewModelProvider.Factory
     @Inject
     lateinit var adapter: MoviesRecyclerAdapter
 
@@ -52,10 +56,12 @@ class MoviesActivity : BaseActivity<ActivityMoviesBinding, MoviesActivityViewMod
                     LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
                 } else GridLayoutManager(this, 3)
         activityBinding.activityMoviesRecyclerView.adapter = adapter
-        /*adapter.setAdapterCallback(object : MoviesRecyclerAdapter.AdapterCallback {
+        adapter.setAdapterCallback(object : MoviesRecyclerAdapter.AdapterCallback {
             override fun showMovieDetails(movie: Movie) {
-
+                val intent = Intent(this@MoviesActivity, MovieDetailsActivity::class.java)
+                intent.putExtra(Constants.INTENT_EXTRAS_MOVIE, movie)
+                startActivity(intent)
             }
-        })*/
+        })
     }
 }

@@ -1,6 +1,7 @@
 package com.shrikantbadwaik.tmdb.data.di.module
 
 import com.shrikantbadwaik.tmdb.data.di.scope.ActivityScope
+import com.shrikantbadwaik.tmdb.view.moviedetails.MovieDetailsActivity
 import com.shrikantbadwaik.tmdb.view.movies.MoviesActivity
 import com.shrikantbadwaik.tmdb.view.movies.MoviesActivityModule
 import dagger.Module
@@ -11,4 +12,8 @@ abstract class ActivityBuilder {
     @ActivityScope
     @ContributesAndroidInjector(modules = [MoviesActivityModule::class])
     abstract fun bindMoviesActivity(): MoviesActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector
+    abstract fun bindMovieDetailsActivity(): MovieDetailsActivity
 }

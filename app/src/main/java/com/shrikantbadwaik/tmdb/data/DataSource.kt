@@ -20,6 +20,6 @@ class DataSource @Inject constructor(
     }
 
     override fun getMoviePosters(movieId: String): Observable<ImageResponse> {
-        return tmDbApi.moviePosters(Constants.API_KEY, movieId)
+        return tmDbApi.moviePosters(movieId, Constants.API_KEY)
     }
 }
