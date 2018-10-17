@@ -27,7 +27,7 @@ The following diagram shows MVVM components and basic interactions.
 | [mvvm-kotlin](https://github.com/Shrikant-B/Tmdb-mvvm/tree/mvvm-kotlin) | Conversion of mvvm-livedata to Kotlin|
 
 ### Examples
-Download the example app [here].(https://play.google.com/store/apps/details?id=com.shrikantbadwaik.tmdb.mvvm.rxjava)
+Download the example app [here](https://play.google.com/store/apps/details?id=com.shrikantbadwaik.tmdb.mvvm.rxjava).
 
 ### References
 [MVVM architecture, ViewModel and LiveData](https://proandroiddev.com/mvvm-architecture-viewmodel-and-livedata-part-1-604f50cda1)
