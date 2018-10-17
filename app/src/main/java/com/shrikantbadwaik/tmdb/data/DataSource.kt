@@ -1,6 +1,7 @@
 package com.shrikantbadwaik.tmdb.data
 
 import com.shrikantbadwaik.tmdb.data.remote.TMDbApi
+import com.shrikantbadwaik.tmdb.data.remote.apiresponse.ImageResponse
 import com.shrikantbadwaik.tmdb.data.remote.apiresponse.MovieResponse
 import com.shrikantbadwaik.tmdb.data.repository.Repository
 import com.shrikantbadwaik.tmdb.domain.Constants
@@ -16,5 +17,9 @@ class DataSource @Inject constructor(
 
     override fun getUpcomingMovies(): Observable<MovieResponse> {
         return tmDbApi.upcomingMovies(Constants.API_KEY, Locale.getDefault().language)
+    }
+
+    override fun getMoviePosters(movieId: String): Observable<ImageResponse> {
+        return tmDbApi.moviePosters(Constants.API_KEY, movieId)
     }
 }
