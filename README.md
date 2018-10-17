@@ -21,6 +21,14 @@ The following diagram shows MVVM components and basic interactions.
 | [mvvm-rxjava](https://github.com/Shrikant-B/Tmdb-mvvm/tree/mvvm-rxjava) | Demonstrates a basic [Model‑View‑ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) architecture with Data Binding library. This sample uses [RxJava 2](https://github.com/ReactiveX/RxJava) to implement concurrency, and abstract the data layer. |
 | [mvvm-livedata](https://github.com/Shrikant-B/Tmdb-mvvm/tree/mvvm-livedata) | Demonstrates a basic [Model‑View‑ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) architecture with Data Binding library. This sample uses [Live data](https://developer.android.com/topic/libraries/architecture/livedata). |
 
+### Stable samples - Kotlin
+| Sample | Description |
+| ------------- | ------------- |
+| [mvvm-kotlin](https://github.com/Shrikant-B/Tmdb-mvvm/tree/mvvm-kotlin) | Conversion of mvvm-livedata to Kotlin|
+
+### Examples
+Download the example app [here].(https://play.google.com/store/apps/details?id=com.shrikantbadwaik.tmdb.mvvm.rxjava)
+
 ### References
 [MVVM architecture, ViewModel and LiveData](https://proandroiddev.com/mvvm-architecture-viewmodel-and-livedata-part-1-604f50cda1)
 
